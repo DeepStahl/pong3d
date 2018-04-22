@@ -1,28 +1,29 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://paddle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://ball.tscn" type="PackedScene" id=3]
 [ext_resource path="res://wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://0477.ogg" type="AudioStream" id=5]
+[ext_resource path="res://tick.ogg" type="AudioStream" id=6]
 
-[node name="Node" type="Node"]
+[node name="Node" type="Node" index="0"]
 
-[node name="block" parent="." index="0" instance=ExtResource( 1 )]
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pause" ]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0 )
-
-[node name="paddle" parent="." index="1" instance=ExtResource( 2 )]
+[node name="paddle" parent="." index="0" instance=ExtResource( 2 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0 )
 
-[node name="ball" parent="." index="2" instance=ExtResource( 3 )]
+[node name="ball" parent="." index="1" instance=ExtResource( 3 )]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
-_sections_unfolded = [ "Transform" ]
+_sections_unfolded = [ "Pause", "Transform", "Visibility" ]
 
-[node name="Camera" type="Camera" parent="." index="3"]
+[node name="Camera" type="Camera" parent="." index="2"]
 
-transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -30, 10, 0 )
+transform = Transform( -4.37103e-08, 0.00715663, -0.999974, 3.12825e-10, 0.999974, 0.00715663, 1, 0, -4.37114e-08, -23.7439, 23.9164, -0.140915 )
 keep_aspect = 1
 cull_mask = 1048575
 environment = null
@@ -37,24 +38,41 @@ near = 0.05
 far = 100.0
 _sections_unfolded = [ "Transform" ]
 
-[node name="wall_unten" parent="." index="4" instance=ExtResource( 4 )]
+[node name="wall_unten" parent="." index="3" instance=ExtResource( 4 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 50, 0, 0, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 80, 0, 0, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="wall_oben" parent="." index="5" instance=ExtResource( 4 )]
+[node name="wall_oben" parent="." index="4" instance=ExtResource( 4 )]
 
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 50, 0, 20, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 80, 0, 47, 0 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="wall_links" parent="." index="6" instance=ExtResource( 4 )]
+[node name="wall_links" parent="." index="5" instance=ExtResource( 4 )]
 
-transform = Transform( 1, 0, 0, 0, 20, 0, 0, 0, 1, 0, 10, -50 )
+transform = Transform( 1, 0, 0, 0, 80, 0, 0, 0, 1, 0, 20, -40 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="wall_rechts" parent="." index="7" instance=ExtResource( 4 )]
+[node name="wall_rechts" parent="." index="6" instance=ExtResource( 4 )]
 
-transform = Transform( 1, 0, 0, 0, 20, 0, 0, 0, 1, 0, 10, 50 )
+transform = Transform( 1, 0, 0, 0, 80, 0, 0, 0, 1, 0, 20, 40 )
 _sections_unfolded = [ "Transform" ]
+
+[node name="audio1" type="AudioStreamPlayer" parent="." index="7"]
+
+stream = ExtResource( 5 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="audio2" type="AudioStreamPlayer" parent="." index="8"]
+
+stream = ExtResource( 6 )
+volume_db = 0.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+_sections_unfolded = [ "Pause" ]
 
 

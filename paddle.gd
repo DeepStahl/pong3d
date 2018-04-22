@@ -20,7 +20,7 @@ func _process(delta):
 	var left = Input.is_action_pressed("ui_left")
 	var right = Input.is_action_pressed("ui_right")
 	var direction = 0
-	var speed = 15
+	var speed = 30
 	# set the direction to move in
 	if left:
 		direction = -1

@@ -1,6 +1,7 @@
 extends KinematicBody
 
-var velocity = Vector3(0, 10, 0)
+var velocity = Vector3(0, 15, 0)
+var maxVelocity = 100
 
 # class member variables go here, for example:
 # var a = 2
@@ -18,13 +19,17 @@ func _ready():
 #	pass
 
 func _physics_process(delta):
+	velocity.x = 0
 	var collide = move_and_collide(velocity * delta)
 	if collide:
 		var name = collide.collider.get("name")
 		if name=="paddleBody":
 			velocity *= 1.1
+			if velocity.length() > maxVelocity:
+				velocity = velocity.normalized() * maxVelocity
+		if name=="blockBody":
+			get_parent().get_parent().blockHit()
+			collide.collider.call("talkShitGetHit")
 			
-		#var x = collide.collider.get_class()
 		velocity = velocity.bounce(collide.normal)
-		#TODO: add collide.remainder to ball-position
 	pass
